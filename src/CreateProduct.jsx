@@ -4,44 +4,46 @@ const CreateProduct = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [count, setCount] = useState('');
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const newProduct = {
       title,
       description,
       price: parseInt(price),
+      count: parseInt(count),
     };
-  
+
     try {
       const response = await fetch('https://zzswrfcjsi.execute-api.us-east-1.amazonaws.com/prod/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(newProduct), // <-- fixed here
+        body: JSON.stringify(newProduct),
       });
-  
+
       if (!response.ok) {
         const text = await response.text();
         throw new Error(`Error creating product: ${text}`);
       }
-  
+
       const data = await response.json();
       setSuccessMessage(`Product created successfully: ${data.id}`);
       setTitle('');
       setDescription('');
       setPrice('');
-      setError(''); // clear old errors if any
+      setCount('');
+      setError('');
     } catch (err) {
       setError(err.message);
-      setSuccessMessage(''); // clear success message on error
+      setSuccessMessage('');
     }
   };
-  
 
   return (
     <div>
@@ -71,6 +73,15 @@ const CreateProduct = () => {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Count:</label>
+          <input
+            type="number"
+            value={count}
+            onChange={(e) => setCount(e.target.value)}
             required
           />
         </div>
