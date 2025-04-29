@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductList from './ProductList';
 import ProductDetail from './ProductDetail';
-import CreateProduct from './CreateProduct'; // Import the new component
+
 import './App.css';
 
 const App = () => {
@@ -27,14 +27,11 @@ const App = () => {
       </div>
 
       <div className="content">
-        {showCreateForm ? (
-          <CreateProduct />
-        ) : (
+      
           <>
             <ProductList />
             {productId && <ProductDetail productId={productId} />}
           </>
-        )}
       </div>
     </div>
   );
