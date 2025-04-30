@@ -13,7 +13,7 @@ const ProductDetail = ({ productId }) => {
       .then(data => setProduct(data))
       .catch(err => setError(err.message));
   }, [productId]);
-
+ 
   if (error) return <p className="error">{error}</p>;
   if (!product) return <p>Loading product...</p>;
 
