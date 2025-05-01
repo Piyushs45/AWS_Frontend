@@ -12,9 +12,7 @@ const App = () => {
     <div className="app">
       <nav className="navbar">
         <h1>🛒 Product Explorer</h1>
-        <button onClick={() => setShowCreateForm(!showCreateForm)}>
-          {showCreateForm ? 'Back to Product List' : 'Create New Product'}
-        </button>
+      
       </nav>
 
       <div className="search">
